@@ -7,6 +7,7 @@ const multer = require('multer');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const bodyParser = require('body-parser');
 const UserRoutes = require("./Routes/User")
+const AuthRoutes = require("./Routes/Auth")
 
 
 const app = express();
