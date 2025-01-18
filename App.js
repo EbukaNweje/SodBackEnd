@@ -6,6 +6,7 @@ const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const bodyParser = require('body-parser');
+const UserRoutes = require("./Routes/User")
 
 
 const app = express();
@@ -34,6 +35,10 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage });
+
+app.use("/api", AuthRoutes)
+app.use("/api", UserRoutes)
+
 
 
 app.use("/", (req, res) => {
