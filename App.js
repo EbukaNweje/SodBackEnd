@@ -20,7 +20,7 @@ app.use(cookkieParser())
 app.use(express.json());
 app.use(bodyParser.json());
 
-// Cloudinary configuration
+// Cloudinary configuration mumu
 cloudinary.config({
     cloud_name: 'your-cloud-name',
     api_key: 'your-api-key',
