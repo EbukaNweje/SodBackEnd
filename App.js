@@ -11,7 +11,7 @@ const AuthRoutes = require("./Routes/Auth")
 
 
 const app = express();
-app.use(cors());
+app.use(cors("*"));
 
 app.use(fileUploader({
     useTempFiles: true
