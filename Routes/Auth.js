@@ -5,7 +5,7 @@ const Routers = express.Router()
 
 Routers.route("/register").post(Auth.register)
 Routers.route("/login").post(Auth.login)
-Routers.route("/changePassword").post(Auth.changepassword)
+Routers.route("/changePassword").patch(Auth.changepassword)
 
 
 module.exports = Routers
