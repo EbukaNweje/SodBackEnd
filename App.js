@@ -8,6 +8,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const bodyParser = require('body-parser');
 const UserRoutes = require("./Routes/User")
 const AuthRoutes = require("./Routes/Auth")
+const Cartegory = require("./Routes/Category")
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Cloudinary configuration mumu
+
 cloudinary.config({
     cloud_name: 'your-cloud-name',
     api_key: 'your-api-key',
@@ -39,6 +41,7 @@ const upload = multer({ storage });
 
 app.use("/api", AuthRoutes)
 app.use("/api", UserRoutes)
+app.use("/api", Cartegory)
 
 
 
