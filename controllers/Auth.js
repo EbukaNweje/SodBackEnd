@@ -1,7 +1,6 @@
 const User = require("../Models/User")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
-const {validationResult } = require('express-validator');
 // const createError = require("../utilities/error");
 
 
@@ -41,9 +40,11 @@ exports.login = async (req, res, next)=>{
         console.log(validPassword);
         if (!validPassword) return res.status(400).send('Invalid password');
         const token = jwt.sign({ _id: user._id }, 'secret');
+
         res.header('Authorization', token).status(201).json({
             message: "Logged in",
-            data: user
+            data: user,
+            token
         })
 
     }catch(err){
