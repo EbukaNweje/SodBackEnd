@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const Admin = require("../Models/Admin");
 const Product = require("../Models/Product");
 const User = require("../Models/User");
@@ -30,7 +31,11 @@ exports.login = async (req, res, next)=>{
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) return res.status(400).send('Invalid password');
         const token = jwt.sign({ _id: user._id }, 'secret');
-        res.header('Authorization', token).send('Logged in');
+        res.header('Authorization', token).status(201).json({
+            message: "Logged in",
+            data: user,
+            token
+        })
 
     }catch(err){
         next(err)
