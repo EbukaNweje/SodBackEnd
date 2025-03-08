@@ -9,6 +9,21 @@ exports.orders = async (req, res, next)=>{
     }
 }
 
+exports.getAllOrders = async (req, res, next) => {
+    try {
+        const allorders = await Order.find()
+
+        res.status(201).json({
+            message: "All Orders",
+            maxnumber: allorders.length,
+            data: allorders
+        })
+
+    }catch (err) {
+        next(err)
+    }
+}
+
 exports.deleteOneOrders = async (req, res, next)=>{
     const { id } = req.params;
 

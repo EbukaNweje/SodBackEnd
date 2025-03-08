@@ -1,4 +1,5 @@
 const User = require("../Models/User")
+const Product = require("../Models/Product")
 
 exports.getoneUser = async (req, res, next) =>{
     try {
@@ -45,10 +46,24 @@ exports.updateoneUser = async (req, res, next) =>{
         next(err)
     }
 }
+
 exports.userHistory = async (req, res, next) =>{
     try {
         const user = await User.findById(req.user.id).populate('history.orderId');
         res.send(user.history);
+    } catch (err) {
+        next(err)
+    }
+}
+
+
+exports.allProduct = async (req, res, next)=>{
+    try {
+        const allproduct = await Product.find()
+        res.status(200).json({
+            message: "All Product",
+            data: allproduct
+        })
     } catch (err) {
         next(err)
     }
