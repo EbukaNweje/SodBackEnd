@@ -4,7 +4,8 @@ const Product = require("../Models/Product")
 exports.getoneUser = async (req, res, next) =>{
     try {
         const userId = req.params.userId
-        const UserData = await User.findById(userId)
+        const UserData = await User.findById(userId);
+        if (!UserData) return res.status(404).json({ message: 'User not found' });
         res.status(201).json({
             message: "User Data",
             data: UserData

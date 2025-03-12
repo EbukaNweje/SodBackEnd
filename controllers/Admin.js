@@ -124,3 +124,11 @@ exports.confirmOrder = async (req, res, next)=>{
     }
 }
 
+exports.getadmin = async (req, res, next)=>{
+    try {
+        const admin = await Admin.findById(req.params.id);
+        res.send(admin);
+    } catch (err) {
+        next(err)
+    }
+}
