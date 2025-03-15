@@ -7,7 +7,10 @@ exports.addCart = async (req, res, next)=>{
         user.cart.push({ productId, quantity });
         await user.save();
         res.send('Added to cart');
-    } catch (err) {
-        next(err)
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+            error
+          });
     }
 }

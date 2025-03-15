@@ -4,6 +4,7 @@ const Product = require("../Models/Product");
 const User = require("../Models/User");
 const nodemailer = require('nodemailer');
 const bcrypt = require("bcryptjs");
+const cloudinary = require("../utils/cloudinary");
 
 
 exports.register = async (req, res, next)=>{
@@ -42,22 +43,39 @@ exports.login = async (req, res, next)=>{
     }
 }
 
-exports.addProduct = async (req, res, next)=>{
-    const { name, price, description, category, quantity, image } = req.body;
+exports.addProduct = async (req, res)=>{
+    const { name, price, description, category, quantity, size} = req.body;
     try {
-        const uploadResponse = await cloudinary.uploader.upload(image);
-        const product = await Product.create({
+        const image = req.files.image;
+        // console.log(req.body);
+        const uploadResponse = await cloudinary.uploader.upload(image.tempFilePath);
+        const productData = {
             name,
             price,
             description,
             category,
             quantity,
-            image: uploadResponse.secure_url
-        });
-        res.status(201).json({ message: 'Product added successfully', product });
+            size,
+        };
+        const product = new Product(productData);
+        product.image = uploadResponse.secure_url;
+        await product.save();
+
+        // console.log(product);
+
+        res.status(201).json({
+            message: 'Product added successfully',
+            product
+          });
+
     } catch (error) {
-        next(error)
+        // next(error)
+        res.status(500).json({
+            message: error.message,
+            error
+          });
     }
+
 }
 
 exports.upddataoneProduct = async (req, res, next)=>{

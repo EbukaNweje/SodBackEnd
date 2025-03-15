@@ -2,9 +2,8 @@ const express = require("express")
 const cookkieParser = require("cookie-parser")
 const fileUploader = require("express-fileupload")
 const cors = require("cors");
-const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+// const cloudinary = require('cloudinary').v2;
+// const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const bodyParser = require('body-parser');
 const UserRoutes = require("./Routes/User")
 const AuthRoutes = require("./Routes/Auth")
@@ -22,23 +21,15 @@ app.use(cookkieParser())
 app.use(express.json());
 app.use(bodyParser.json());
 
-// Cloudinary configuration mumu
 
-cloudinary.config({
-    cloud_name: process.env.cloud_name,
-    api_key: process.env.api_key,
-    api_secret: process.env.api_secret
-});
+// const storage = new CloudinaryStorage({
+//     cloudinary: cloudinary,
+//     params: {
+//         folder: 'products',
+//         allowed_formats: ['jpg', 'png']
+//     }
+// });
 
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'products',
-        allowed_formats: ['jpg', 'png']
-    }
-});
-
-const upload = multer({ storage });
 
 app.use("/api", Admin)
 app.use("/api", AuthRoutes)
