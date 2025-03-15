@@ -7,6 +7,6 @@ const cloudinary = require('cloudinary').v2;
     api_secret: process.env.api_secret
 });
 
-console.log(cloudinary)
+// console.log(cloudinary)
 
 module.exports = cloudinary  

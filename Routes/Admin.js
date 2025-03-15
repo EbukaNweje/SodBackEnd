@@ -10,7 +10,7 @@ const Routers = express.Router()
 
 Routers.route("/admin-register").post(Admin.register);
 Routers.route("/admin-login").post(Admin.login);
-Routers.route("/addProduct", Middlewares.adminauthenticate).post(Admin.addProduct)
+Routers.route("/addProduct").post(Middlewares.adminauthenticate, Admin.addProduct)
 Routers.route("/deleteProduct").delete(Admin.deletedOneProduct)
 Routers.route("/updateproduct").patch(Admin.upddataoneProduct)
 Routers.route("/admindata/:id").get(Admin.getadmin)
