@@ -15,8 +15,9 @@ const app = express();
 app.use(cors("*"));
 
 app.use(fileUploader({
-    useTempFiles: true
-}))
+    tempFileDir: '/tmp', // Use the /tmp directory instead of /var/task/tmp
+    createParentPath: true,
+  }));
 app.use(cookkieParser())
 app.use(express.json());
 app.use(bodyParser.json());
