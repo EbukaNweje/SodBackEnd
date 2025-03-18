@@ -46,10 +46,10 @@ exports.login = async (req, res, next)=>{
 exports.addProduct = async (req, res)=>{
     const { name, price, description, category, quantity, size} = req.body;
     try {
-        const image = req.files.image;
+        const image = req.file.path;
         const sizes = req.body.size.split(',').map(size => size.trim());
         // console.log(req.body);
-        const uploadResponse = await cloudinary.uploader.upload(image.tempFilePath);
+        const uploadResponse = await cloudinary.uploader.upload(image);
         const productData = {
             name,
             price,
