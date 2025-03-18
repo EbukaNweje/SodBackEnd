@@ -1,6 +1,6 @@
 const express = require("express")
 const cookkieParser = require("cookie-parser")
-const fileUploader = require("express-fileupload")
+// const fileUploader = require("express-fileupload")
 const cors = require("cors");
 // const cloudinary = require('cloudinary').v2;
 // const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -14,9 +14,9 @@ const Admin = require("./Routes/Admin");
 const app = express();
 app.use(cors("*"));
 
-app.use(fileUploader({
-    useTempFiles: true
-}))
+// app.use(fileUploader({
+//     useTempFiles: true
+// }))
 
 app.use(cookkieParser())
 app.use(express.json());
