@@ -9,6 +9,9 @@ Routers.route("/oneuserdata/:userId").get(User.getoneUser)
 Routers.route("/addCart").post(Middlewares.authenticate, Cart.addCart)
 Routers.route("/history").get(User.userHistory)
 Routers.route("/allProduct").get(User.allProduct)
+Routers.route("/deleteoneUser/:userId").delete(User.deleteoneUser)
+Routers.route("/updateoneUser/:userId").patch(User.updateoneUser)
+Routers.route("/oneProduct/:id").get(User.getOneProduct)
 
 
 module.exports = Routers

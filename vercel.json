@@ -1,5 +1,5 @@
 {
-    "name": "the-bitpay-capital-back-end",
+    "name": "sod",
     "builds": [
       {
         "src": "server.js",

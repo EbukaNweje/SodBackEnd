@@ -69,3 +69,16 @@ exports.allProduct = async (req, res, next)=>{
         next(err)
     }
 }
+
+exports.getOneProduct = async (req, res, next)=>{
+    try {
+        const id = req.params.id
+        const oneProduct = await Product.findById(id)
+        res.status(200).json({
+            message: "One Product",
+            data: oneProduct
+        })
+    } catch (err) {
+        next(err)
+    }
+}
