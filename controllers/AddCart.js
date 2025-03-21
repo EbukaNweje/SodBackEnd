@@ -31,3 +31,19 @@ exports.getCart = async (req, res, next)=>{
           });
     }
 }
+
+exports.deleteoneCart = async (req, res, next)=>{
+    const { productId } = req.params;
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) return res.status(404).send('User not found');
+        user.cart = user.cart.filter(item => item.productId.toString() !== productId);
+        await user.save();
+        res.send('Deleted from cart');
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+            error
+          });
+    }
+}
