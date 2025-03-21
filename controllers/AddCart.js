@@ -21,7 +21,7 @@ exports.addCart = async (req, res, next)=>{
 
 exports.getCart = async (req, res, next)=>{
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id).populate('cart.productId');
         if (!user) return res.status(404).send('User not found');
         res.send(user.cart);
     } catch (error) {
@@ -30,6 +30,7 @@ exports.getCart = async (req, res, next)=>{
             error
           });
     }
+
 }
 
 exports.deleteoneCart = async (req, res, next)=>{
