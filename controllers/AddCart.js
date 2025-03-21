@@ -1,12 +1,12 @@
 const User = require("../Models/User")
 
 exports.addCart = async (req, res, next)=>{
-    const { productId, quantity } = req.body;
+    const { productId, quantity, size } = req.body;
     try {
         // console.log(req.user);
         const user = await User.findById(req.user._id);
         if (!user) return res.status(404).send('User not found');
-        user.cart.push({ productId, quantity });
+        user.cart.push({ productId, quantity, size });
         // console.log(user)
         
         await user.save();
