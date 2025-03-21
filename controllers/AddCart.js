@@ -18,3 +18,16 @@ exports.addCart = async (req, res, next)=>{
           });
     }
 }
+
+exports.getCart = async (req, res, next)=>{
+    try {
+        const user = await User.findById(req.user._id);
+        if (!user) return res.status(404).send('User not found');
+        res.send(user.cart);
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+            error
+          });
+    }
+}
