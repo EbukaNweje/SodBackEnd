@@ -1,4 +1,5 @@
 const User = require("../Models/User")
+const Product = require("../Models/Product")
 
 exports.addCart = async (req, res, next)=>{
     const { productId, quantity, size } = req.body;
