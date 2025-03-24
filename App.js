@@ -9,6 +9,7 @@ const UserRoutes = require("./Routes/User")
 const AuthRoutes = require("./Routes/Auth")
 const Cartegory = require("./Routes/Category");
 const Admin = require("./Routes/Admin");
+const Order = require("./Routes/Order");
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 // });
 
 
+app.use("/api", Order)
 app.use("/api", Admin)
 app.use("/api", AuthRoutes)
 app.use("/api", UserRoutes)
