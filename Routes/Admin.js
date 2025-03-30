@@ -12,8 +12,8 @@ const Routers = express.Router()
 Routers.route("/admin-register").post(Admin.register);
 Routers.route("/admin-login").post(Admin.login);
 Routers.route("/addProduct").post(upload.single('image'), Middlewares.adminauthenticate, Admin.addProduct)
-Routers.route("/deleteProduct").delete(Admin.deletedOneProduct)
-Routers.route("/updateproduct").patch(Admin.upddataoneProduct)
+Routers.route("/deleteProduct/:id").delete(Admin.deletedOneProduct)
+Routers.route("/updateproduct/:id").patch(Admin.upddataoneProduct)
 Routers.route("/admindata/:id").get(Admin.getadmin)
 
 
