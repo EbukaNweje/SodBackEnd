@@ -46,7 +46,7 @@ exports.login = async (req, res, next)=>{
 exports.addProduct = async (req, res)=>{
     const { name, price, description, quantity} = req.body;
     try {
-        const image = req.file.path;
+        const image = req.files.image.tempFilePath;
         // const sizes = req.body.size.split(',').map(size => size.trim());
         // console.log(req.body);
         const uploadResponse = await cloudinary.uploader.upload(image);
